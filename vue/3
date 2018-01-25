@@ -1,0 +1,227 @@
+一、课前点评
+
+二、知识回顾
+
+三、习题讲解
+1、JavaScript数据类型：
+基本数据类型：Number、String、Boolean、Undefined、Null。
+复杂数据类型：Array、Object、Function。
+
+function我们到底把它定义为什么？
+var、let、const、function、class（es6）：
+他们的本质，就是用来定义一个变量。
+
+2、变量的类型判断
+！！！typeof判断null的时候，返回值是object。
+typeof：判断基本数据类型，无法判断复杂数据类型（object）;
+
+
+instanceof:准确判断，当前变量 是否 属于某一种数据类型。
+instanceof判断一个对象是否是另一个对象的实例，
+而数字1是基本数据类型，不是对象
+返回值是：true / false
+
+
+Object.prototype.toString.call(value);
+输出结果是: [object Array],[object String],[object Object];
+
+instanceof示例：（更多的用在构造函数中）
+var a = new Number(1);
+var b = 1;
+console.log(a instanceof Number);//true
+console.log(b instanceof Number);//false
+console.log(a == b);//true
+console.log(typeof a);//object
+console.log(typeof b);//Number
+
+var aa = [];
+var bb = new Array();
+console.log(aa instanceof Array);//true
+console.log(bb instanceof Array);//true
+
+
+3、定时器、计时器，第二个参数，单位是毫秒.
+
+4、运行机制。
+JavaScript的执行，是一个单线程的执行过程。
+
+5、==、===
+==：只比较值是否相等。1 == '1';//true
+===：比较的是值以及数据类型是否相等。
+
+
+四、今日课程
+（服务封装、路由搭建、项目模块划分）
+1、项目模块划分
+要求：一个完整的，上线运行的项目。
+
+2、界面分析
+a、启动界面：
+登录按钮：router-link、$router.push/replace
+新用户：router-link、$router.push/replace
+
+b、登录界面：
+tab切换——
+{
+    背景图
+    router-link，$router.push/replace
+    router-view
+}
+
+c、注册：一样
+
+d、找回密码界面：（三个）
+
+e、主页面：
+搜索框：
+$router.push/replace.
+轮播图：
+reouter-link的列表。
+
+本周主打：本月主打：
+右边的小图标——router-link>本周主打的界面
+图——布局问题。
+
+f、底部的四个选项卡。
+router-link。router-view。
+
+小图标——iconfont。（好一点？减少链接请求数）。
+
+g、购物车。
+商品列表：接口请求。
+[{isChecked:'',
+imgsrc:'',
+price:'',
+num:''
+},{},{}];
+v-for实现列表渲染。
+示例：下午。
+可能想要的列表：接口请求——img图片的地址src。
+
+h，选择支付方式的界面：
+第三方——查看微信公众平台（开放平台）。
+微信/支付宝的Api。
+
+后台——相应的接口。。。。。
+
+建议：学的比较好的，
+去查看，如何做第三方登录，第三方支付功能。
+
+个人/公司：注册账户。
+
+本质只有一个：我仅仅是调用了别人提供的接口。
+
+路由是单页面项目的骨架，组件是单页面应用的血肉。
+
+
+
+下午课程：（服务封装、路由配置）
+
+李武帝、甘肃庆阳。
+千万别丢了甘肃的人啊！！！
+
+
+3、vue-router
+（router-link、router-view、$router）
+
+路由的配置过程。
+(1)第一种方式：
+第一步、
+<script src="https://unpkg.com/vue/dist/vue.js"></script>
+<script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+第二步、
+<router-link to="/foo">Go to Foo</router-link>
+<router-link to="/bar">Go to Bar</router-link>
+<route-view>
+这个router-view将会被router-link的to属性，
+指向的组件代替。
+
+第三步、配置routers，是一个每一项包括path和component的数组。
+为什么？
+path需要和router-link的to属性进行匹配。
+component要和router-view进行匹配。
+const routes = [
+  { path: '/foo', component: Foo },
+  { path: '/bar', component: Bar }
+]
+第四步、实例化VueRouter。
+什么叫实例化？new 一个构造函数。
+const router = new VueRouter({
+  routes // （缩写）相当于 routes: routes
+})
+第五步、
+new Vue({
+    el:'#app',
+    routes
+})
+
+(2)、第二种方式，脚手架中的用法
+//main.js
+import router from './router/index.js';
+import App from './App.vue'
+new Vue({
+    el:"#app",
+    router,
+    components: { App },
+    template:'<App></App>'
+})
+
+//router/index.js
+
+import Vue from 'vue';
+import VueRouter from 'vue-router';
+
+import Home from '../view/Home/Home.vue';
+//vue-router向外 export default 一个变量。
+
+Vue.use(VueRouter);
+
+const routes = [{
+    path:'/home',
+    component: Home
+},{
+    path:'',
+    components:''
+}]
+
+我们自己有一种需求，就是程序在某种情况下自动跳转页面。
+例如：登录。
+点击登录按钮->登录接口请求数据->如果数据校验通过->
+$router.replace('/main');
+
+常用Api：
+router.push(url);
+router.replace(url);
+router.go(-1);
+
+4、components 和 views
+东西都是.vue的单文件组件。
+其中components中的.vue文件是用来展示东西的。
+views中的.vue文件是用来展示page（页面）的。
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

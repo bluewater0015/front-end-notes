@@ -1,0 +1,249 @@
+一、课前点评
+1、小组长——段明高，把每个小组员的作业负责查看，并且报给学委。
+李钰——晚自习，认真的做题目。
+学委：王忠奎——学习够认真，做事很细心。
+各个小组长——应该实时掌握自己组员的 出勤情况 && 作业情况。
+班长：彭硕硕——应该主动监控，班级不正常的情况，如：昨晚的非常低的出勤率。
+
+二、知识回顾。
+1、指令：v-bind、v-for、v-if、v-on、v-model。
+2、生命周期函数
+    a、初始化——执行了那几个周期函数。
+    b、$data,数据发生变化，执行什么？
+    c、destory周期函数，我该做什么？
+
+
+
+ （专业高级6）
+ Vue项目：app项目+后台管理
+ app项目：
+    vue的基础知识。
+    axios底层服务封装。
+    vuex的基本使用。
+    vue-router项目中的使用。
+    git的基本使用。
+    项目的生命周期。
+    项目模块的划分。
+    面向对象—— 轮播。——代码实现。
+  后台管理：
+    element-ui：饿了么。
+    git的分支管理。
+
+3、vue-cli脚手架工具
+    a、坑？
+    b、每个文件夹是干什么的？
+4、git
+    a、git init
+    b、git status
+    c、git add .
+    d、git commit -m ''
+    e、git log
+    f、git config
+        git config --global user.name
+        git config --global user.email
+    g、git reset --HEAD^
+三、今日课程
+1、git 版本回退。
+    git reset --hard --HEAD^，回退到上一个版本
+    git reset --hard commitId，回退到一个确定的版本。
+
+    git reflog：查看自己曾经所做过的操作。
+
+    git checkout -- fileName : 撤销自己所做的修改。
+
+2、git添加远程仓库。
+一般，我我们开发的项目，都要放在一个远程的（非本地的）代码仓库中。
+这样让别人，也能得到我们开发的代码。
+
+在自己的github上，新建一个项目，然后git clone到本地。
+通过git remote -v查看远端地址。
+<1>、直接通过获取远端代码的方式得到本地仓库。（本地仓库git init）
+git clone url：从远端获取代码。
+git remote -v:查看远端url。
+git push -u origin master：//把本地的代码提交远程仓库。
+（-u在第一次提交的时候需要用到：git push origin master）
+
+//剩余部分——git的分支管理。
+项目负责人：master。
+其他开发者：创建自己的分支，合作开发。
+
+3、项目的生命周期：
+一个项目，从开始——结束(上线)，经历了什么流程？
+前端开发者，在一个项目中扮演什么样的角色。
+
+(1)、人员划分
+a、产品/产品经理——腾讯的张小龙。（微信）——原型图
+b、UI/UED——设计稿——我们手机、电脑看到的界面一模一样的图。
+c、开发人员：前端开发/后端开发
+    前端开发：界面、调用接口、实现交互。
+    后端开发：java、php、node（提供接口的人员）
+    其他开发人员：例如，
+        大数据处理工程师，处理数据
+        >>>暴露出可用数据
+        >>>后端开发人员，接口
+        >>>前端开发人员。
+d、测试人员（Qc、Qa）
+e、项目负责人
+
+
+（2）、产品流程
+a、做一个项目，产品经理——提出需求。
+
+b、开发人员——需求评估和调研。
+看这个需求合不合理？能不能完成？
+//对于前端来说：布局？合不合理？
+一个框架能做什么？非常重要！！
+示例：
+echarts：canvas绘图——，规则图形。
+（复杂——改怎么办）
+//后端人员
+接口——数据相关！——数据结构进行合理组织。
+c、需求评估过后，产品出原型图。
+产品把原型图给UI设计师、开发人员。
+
+d、对于前端开发人员来说，搭建底层开发环境。
+进行项目的细节划分。
+开发周期：两周开发时间。
+    2天，细化需求——
+    一个布局，用什么来布（flex）
+    这个路由跳转，跳转到那个页面。
+    这个页面关闭提示是一个model框还是？
+    我改给接口提供什么样的数据，然后接口应该返回什么？
+    7天：开发完毕。
+    5天：优化细节，代码整理。
+e、ui把设计图给你，你就能把界面的细节给确定下来。
+f、开发过程中，有和后端人员的借口调试。
+g、开发完毕之后，提交测试。
+
+
+
+
+4、单文件组件（.vue）———————————————
+三部分（分别对应html、js、css）
+(1)、<template>
+        <div></div>
+    </template>
+//单文件组件的template，最外层必须是单个的元素。
+（2）、
+<script>
+    //用来描述一个组件的基本信息的
+    export default {
+        data: function (){}
+    }
+</script>
+之前的组件：
+可以用一个对象来表示：
+{ template:'' }
+（3）、<style scoped></style>
+//scoped:组件的局部样式。
+（不会引起其他组件的样式发生改变）
+
+
+
+
+
+
+
+一个项目中最重要的封装模块——services。
+5、服务封装：axios
+安装命令：
+npm install axios
+使用：
+A、get方式
+axios.get(url,{
+    params: {}
+}).then(function(res){
+    console.log(res);
+})
+问题：
+1、100个接口都这样写吗？
+2、这样调错容易吗？
+
+总结服务的封装：
+一、关于import 和 export 还有 export default。
+1、import引入一个依赖包，不需要相对路径。
+import 引入一个自己写的js文件，是需要相对路径的。
+示例：import axios from 'axios';
+import AppService from './appService';
+
+2、import什么情况下，要用{}的方式引入，什么情况下，只需要一个变量就行。
+(1)
+使用export抛出的变量需要用{}进行import：
+//a.js
+export function getList(){};
+//b.js
+import { getList } from './a.js';
+
+(2)
+使用export default抛出的变量，只需要自己起一个名字就行：
+//a.js
+var obj = { name: 'liwudi' };
+export default obj;
+//b.js
+import ssss from './a.js';
+console.log(ssss.name);// 'liwudi';
+
+(3)
+切记，一个js文件中，只能有一个export default；
+但是，一个js文件中，可以有多个export。
+
+二、关于axios这个东西是什么？
+前端进行数据请求的核心：XMLHttpRequest对象。
+异步的回调，写成同步的方式，是用什么实现？Promise。
+异步的回调：
+$.get(url,function(res){
+    console.log(data);
+    $.post(url,data,function(){
+        console.log(1111)
+        //其他嵌套
+    })
+})
+//连续的嵌套
+new Promise(function(resolve,reject){
+    $.get(url,function(res){
+        resolve(res);
+    })
+}).then(function(data){
+    console.log(data);//data就代表上面那个res。
+}).then(//////).
+
+axios为什么会有.then()/.catch()??
+本质上就是，使用Promise封装XMLHttpRequest。
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
